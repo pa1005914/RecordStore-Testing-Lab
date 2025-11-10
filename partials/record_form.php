@@ -1,3 +1,14 @@
+<?php
+    $is_edit  = isset($record) && isset($record['id']);
+    $action   = $is_edit ? 'update' : 'create';
+
+    $title    = $is_edit ? htmlspecialchars($record['title'])  : '';
+    $artist   = $is_edit ? htmlspecialchars($record['artist']) : '';
+    $price    = $is_edit ? htmlspecialchars($record['price'])  : '';
+    $format_id = $is_edit ? (int)$record['format_id']            : 0;
+?>
+
+
 <form method="post">
     <label for="title">Title:</label>
     <input type="text" name="title" id="title">

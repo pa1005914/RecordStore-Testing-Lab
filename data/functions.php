@@ -33,14 +33,14 @@
         }
     }
 
-    function record_get(int $id): array {
+    function record_get(int $id): ?array {
         $pdo = get_pdo();
         $sql = "
-                SELECT r.id, r.title, r.artist, r.price, r.genre_id, g.name AS genre_name, f.name AS format  
-                FROM books r
+                SELECT r.id, r.title, r.artist, r.price, r.genre_id, g.name AS genre_name, f.name AS format_id  
+                FROM records r
                 JOIN formats f ON f.id = r.format_id
-                JOIN genre g ON g.id = f.genre_id
-                WHERE b.id = :id
+                JOIN genres g ON g.id = r.genre_id
+                WHERE r.id = :id
                 LIMIT 1
             ";
         $stmt = $pdo->prepare($sql);

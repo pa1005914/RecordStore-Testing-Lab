@@ -26,6 +26,14 @@
                 $deleted = record_delete($id); // returns 1 if a row was deleted
             }
             $view = 'deleted';
+
+        case 'edit':
+            $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+            if ($id) {
+                $record = record_get($id);   // load that record
+            }
+            $view = 'create';            // reuse the view
+            break;
         }
             
 ?> 
