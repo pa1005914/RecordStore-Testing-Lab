@@ -19,7 +19,15 @@
                 $view = 'create';
             }
             break;
+
+        case 'delete':
+            $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+            if ($id) {
+                $deleted = record_delete($id); // returns 1 if a row was deleted
+            }
+            $view = 'deleted';
         }
+            
 ?> 
 
 <!DOCTYPE html>
@@ -43,6 +51,9 @@
             }
             elseif ($view === 'created'){
                 include __DIR__ . DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR . 'record_created.php';
+            }
+            elseif ($view === 'deleted'){
+                include __DIR__ . '/partials/record_deleted.php';
             }
             
             
