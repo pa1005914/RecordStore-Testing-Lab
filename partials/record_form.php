@@ -1,4 +1,5 @@
 <?php
+
     $is_edit  = isset($record) && isset($record['id']);
     $action   = $is_edit ? 'update' : 'create';
 
@@ -11,13 +12,13 @@
 
 <form method="post">
     <label for="title">Title:</label>
-    <input type="text" name="title" id="title">
+    <input type="text" name="title" id="title" value="<?php $title ?>">
     <label for="artist">Artist:</label>
-    <input type="text" name="artist" id="artist">
+    <input type="text" name="artist" id="artist" value="<?php $artist ?>">
     <label for="price">Price:</label>
-    <input type="text" name="price" id="price">
+    <input type="text" name="price" id="price" value="<?php $price ?>">
     <label for="format">Pick a format:</label>
-    <select name="format_id" id="format_id">
+    <select name="format_id" id="format_id" value="<?php $format_id ?>">
         <?php
         $rows = formats_all();
         foreach($rows as $row):

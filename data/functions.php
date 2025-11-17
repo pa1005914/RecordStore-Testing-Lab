@@ -55,3 +55,7 @@
         $stmt->execute([':id' => $id]);
         return $stmt->rowCount(); // 1 if deleted, 0 if not found
     }
+
+    function record_update(int $id, string $title,string $artist,float $price, int $format_id){
+        
+    }

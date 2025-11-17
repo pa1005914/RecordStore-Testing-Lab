@@ -26,12 +26,21 @@
                 $deleted = record_delete($id); // returns 1 if a row was deleted
             }
             $view = 'deleted';
+            break;
 
         case 'edit':
             $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
-            if ($id) {
-                $record = record_get($id);   // load that record
+            $title     = (string)filter_input(INPUT_POST, 'title',  FILTER_UNSAFE_RAW);
+            $artist    = (string)filter_input(INPUT_POST, 'artist', FILTER_UNSAFE_RAW);
+            $price_in  =        filter_input(INPUT_POST, 'price',   FILTER_UNSAFE_RAW);
+            $format_id  =        filter_input(INPUT_POST, 'format_id', FILTER_VALIDATE_INT);
+
+            $price = is_numeric($price_in) ? (float)$price_in : null;
+
+            if ($id && $title !== '' && $artist !== '' && $price !== null && $format_id) {
+                record_update($id, $title, $artist, $price, (int)$format_id);
             }
+
             $view = 'create';            // reuse the view
             break;
         }
